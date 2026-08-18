@@ -1,7 +1,5 @@
 package dao;
-
 import model.Athlete;
-
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -29,7 +27,6 @@ public class AthleteDAO {
             return false;
         }
     }
-
     public boolean modifier(Athlete a) {
         String sql = "UPDATE athlete SET nom=?, prenom=?, sexe=?, date_naissance=?, id_pays=?, id_discipline=? WHERE id_athlete=?";
         try (PreparedStatement ps = Database.getConnection().prepareStatement(sql)) {
@@ -46,7 +43,6 @@ public class AthleteDAO {
             return false;
         }
     }
-
     public boolean supprimer(int id) {
         String sql = "DELETE FROM athlete WHERE id_athlete=?";
         try (PreparedStatement ps = Database.getConnection().prepareStatement(sql)) {
@@ -85,7 +81,6 @@ public class AthleteDAO {
         }
         return liste;
     }
-
     public List<Athlete> listerTous() {
         List<Athlete> liste = new ArrayList<>();
         try (Statement st = Database.getConnection().createStatement();
@@ -96,7 +91,6 @@ public class AthleteDAO {
         }
         return liste;
     }
-
     public int compter() {
         String sql = "SELECT COUNT(*) FROM athlete";
         try (Statement st = Database.getConnection().createStatement();
