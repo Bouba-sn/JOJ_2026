@@ -15,14 +15,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class IMenuImple implements IMenu {
-
     private final Scanner sc = new Scanner(System.in);
     private final DateTimeFormatter dateFmt = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
     private final IAuthService authService = new IAuthServiceImple();
     private final IAthleteService athleteService = new IAthleteServiceImple();
     private final IStatistiqueService statistiqueService = new IStatistiqueServiceImple();
-
     private final UtilisateurDAO utilisateurDAO = new UtilisateurDAO();
     private final PaysDAO paysDAO = new PaysDAO();
     private final DisciplineDAO disciplineDAO = new DisciplineDAO();
@@ -35,7 +32,6 @@ public class IMenuImple implements IMenu {
             System.out.println("Trop de tentatives échouées. Fin du programme.");
             return;
         }
-
         boolean quitter = false;
         while (!quitter) {
             Utilisateur courant = authService.getUtilisateurConnecte();
@@ -80,7 +76,6 @@ public class IMenuImple implements IMenu {
             }
         }
     }
-
     // =========================================================
     // AUTHENTIFICATION
     // =========================================================
@@ -103,7 +98,6 @@ public class IMenuImple implements IMenu {
         }
         return false;
     }
-
     // =========================================================
     // 1. GESTION DES UTILISATEURS
     // =========================================================
@@ -165,7 +159,6 @@ public class IMenuImple implements IMenu {
             }
         }
     }
-
     // =========================================================
     // 2. GESTION DES PAYS
     // =========================================================
@@ -222,7 +215,6 @@ public class IMenuImple implements IMenu {
             }
         }
     }
-
     // =========================================================
     // 3. GESTION DES DISCIPLINES
     // =========================================================
@@ -278,7 +270,6 @@ public class IMenuImple implements IMenu {
             }
         }
     }
-
     // =========================================================
     // 4. GESTION DES ATHLETES
     // =========================================================
@@ -406,7 +397,6 @@ public class IMenuImple implements IMenu {
             }
         }
     }
-
     // =========================================================
     // 6. GESTION DES RESULTATS
     // =========================================================
@@ -464,7 +454,6 @@ public class IMenuImple implements IMenu {
             }
         }
     }
-
     // =========================================================
     // 7. STATISTIQUES / TABLEAU DES MEDAILLES
     // =========================================================
@@ -482,7 +471,6 @@ public class IMenuImple implements IMenu {
             System.out.printf("%-20s %-5s %-8s %-8s %-6s%n", ligne[0], ligne[1], ligne[2], ligne[3], ligne[4]);
         }
     }
-
     // =========================================================
     // UTILITAIRES DE SAISIE
     // =========================================================
@@ -495,7 +483,6 @@ public class IMenuImple implements IMenu {
             }
         }
     }
-
     private double lireDouble() {
         while (true) {
             try {
@@ -505,7 +492,6 @@ public class IMenuImple implements IMenu {
             }
         }
     }
-
     private LocalDate lireDate(String prompt) {
         while (true) {
             System.out.print(prompt);

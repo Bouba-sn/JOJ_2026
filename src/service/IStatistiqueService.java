@@ -1,5 +1,4 @@
 package service;
-
 import java.util.List;
 
 public interface IStatistiqueService {
@@ -8,7 +7,5 @@ public interface IStatistiqueService {
     int nombreDisciplines();
     int nombreCompetitions();
     int nombreResultats();
-
-    /** Chaque élément : {nomPays, or, argent, bronze, total} */
     List<Object[]> tableauDesMedailles();
 }

@@ -1,7 +1,5 @@
 package service;
-
 import model.Athlete;
-
 import java.util.List;
 
 public interface IAthleteService {

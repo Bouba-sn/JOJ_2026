@@ -1,5 +1,6 @@
 package service;
 import model.Utilisateur;
+
 public interface IAuthService {
     /** Tente de connecter l'utilisateur ; renvoie l'utilisateur si succès, null sinon. */
     Utilisateur login(String login, String motDePasse);
