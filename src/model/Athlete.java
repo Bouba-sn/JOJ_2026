@@ -1,7 +1,5 @@
 package model;
-
 import java.time.LocalDate;
-
 public class Athlete {
     private int idAthlete;
     private String nom;
@@ -10,8 +8,6 @@ public class Athlete {
     private LocalDate dateNaissance;
     private int idPays;
     private int idDiscipline;
-
-    // Champs pratiques pour l'affichage (jointures), non stockés en base
     private String nomPays;
     private String nomDiscipline;
 
@@ -27,7 +23,6 @@ public class Athlete {
         this.idPays = idPays;
         this.idDiscipline = idDiscipline;
     }
-
     public Athlete(String nom, String prenom, String sexe,
                    LocalDate dateNaissance, int idPays, int idDiscipline) {
         this.nom = nom;
@@ -37,31 +32,22 @@ public class Athlete {
         this.idPays = idPays;
         this.idDiscipline = idDiscipline;
     }
-
     public int getIdAthlete() { return idAthlete; }
     public void setIdAthlete(int idAthlete) { this.idAthlete = idAthlete; }
-
     public String getNom() { return nom; }
     public void setNom(String nom) { this.nom = nom; }
-
     public String getPrenom() { return prenom; }
     public void setPrenom(String prenom) { this.prenom = prenom; }
-
     public String getSexe() { return sexe; }
     public void setSexe(String sexe) { this.sexe = sexe; }
-
     public LocalDate getDateNaissance() { return dateNaissance; }
     public void setDateNaissance(LocalDate dateNaissance) { this.dateNaissance = dateNaissance; }
-
     public int getIdPays() { return idPays; }
     public void setIdPays(int idPays) { this.idPays = idPays; }
-
     public int getIdDiscipline() { return idDiscipline; }
     public void setIdDiscipline(int idDiscipline) { this.idDiscipline = idDiscipline; }
-
     public String getNomPays() { return nomPays; }
     public void setNomPays(String nomPays) { this.nomPays = nomPays; }
-
     public String getNomDiscipline() { return nomDiscipline; }
     public void setNomDiscipline(String nomDiscipline) { this.nomDiscipline = nomDiscipline; }
 
