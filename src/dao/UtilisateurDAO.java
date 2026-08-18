@@ -1,11 +1,9 @@
 package dao;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import model.Utilisateur;
 public class UtilisateurDAO {
-
     public boolean ajouter(Utilisateur u) {
         String sql = "INSERT INTO utilisateur (nom_complet, login, mot_de_passe, role) VALUES (?, ?, ?, ?)";
         try (PreparedStatement ps = Database.getConnection().prepareStatement(sql)) {
@@ -19,7 +17,6 @@ public class UtilisateurDAO {
             return false;
         }
     }
-
     public boolean modifier(Utilisateur u) {
         String sql = "UPDATE utilisateur SET nom_complet=?, login=?, mot_de_passe=?, role=? WHERE id_utilisateur=?";
         try (PreparedStatement ps = Database.getConnection().prepareStatement(sql)) {
@@ -34,7 +31,6 @@ public class UtilisateurDAO {
             return false;
         }
     }
-
     public boolean supprimer(int id) {
         String sql = "DELETE FROM utilisateur WHERE id_utilisateur=?";
         try (PreparedStatement ps = Database.getConnection().prepareStatement(sql)) {
@@ -58,8 +54,6 @@ public class UtilisateurDAO {
         }
         return null;
     }
-
-    /** Vérifie le login/mot de passe pour l'authentification. */
     public Utilisateur authentifier(String login, String motDePasse) {
         String sql = "SELECT * FROM utilisateur WHERE login=? AND mot_de_passe=?";
         try (PreparedStatement ps = Database.getConnection().prepareStatement(sql)) {
@@ -73,7 +67,6 @@ public class UtilisateurDAO {
         }
         return null;
     }
-
     public List<Utilisateur> listerTous() {
         List<Utilisateur> liste = new ArrayList<>();
         String sql = "SELECT * FROM utilisateur";
@@ -85,7 +78,6 @@ public class UtilisateurDAO {
         }
         return liste;
     }
-
     private Utilisateur mapper(ResultSet rs) throws SQLException {
         return new Utilisateur(
                 rs.getInt("id_utilisateur"),
