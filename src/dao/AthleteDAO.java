@@ -101,7 +101,6 @@ public class AthleteDAO {
         }
         return 0;
     }
-
     private Athlete mapper(ResultSet rs) throws SQLException {
         Athlete a = new Athlete(
                 rs.getInt("id_athlete"),

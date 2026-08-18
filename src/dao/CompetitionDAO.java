@@ -1,17 +1,13 @@
 package dao;
-
 import model.Competition;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import model.Competition;
 public class CompetitionDAO {
-
     private static final String SELECT_JOIN =
             "SELECT c.*, d.nom_discipline FROM competition c " +
                     "LEFT JOIN discipline d ON c.id_discipline = d.id_discipline ";
-
     public boolean ajouter(Competition c) {
         String sql = "INSERT INTO competition (nom_competition, date_competition, lieu, id_discipline) VALUES (?, ?, ?, ?)";
         try (PreparedStatement ps = Database.getConnection().prepareStatement(sql)) {
@@ -25,7 +21,6 @@ public class CompetitionDAO {
             return false;
         }
     }
-
     public boolean modifier(Competition c) {
         String sql = "UPDATE competition SET nom_competition=?, date_competition=?, lieu=?, id_discipline=? WHERE id_competition=?";
         try (PreparedStatement ps = Database.getConnection().prepareStatement(sql)) {
@@ -40,7 +35,6 @@ public class CompetitionDAO {
             return false;
         }
     }
-
     public boolean supprimer(int id) {
         String sql = "DELETE FROM competition WHERE id_competition=?";
         try (PreparedStatement ps = Database.getConnection().prepareStatement(sql)) {
@@ -51,7 +45,6 @@ public class CompetitionDAO {
             return false;
         }
     }
-
     public Competition rechercherParId(int id) {
         String sql = SELECT_JOIN + " WHERE c.id_competition=?";
         try (PreparedStatement ps = Database.getConnection().prepareStatement(sql)) {
@@ -64,7 +57,6 @@ public class CompetitionDAO {
         }
         return null;
     }
-
     public List<Competition> rechercherParNom(String nom) {
         List<Competition> liste = new ArrayList<>();
         String sql = SELECT_JOIN + " WHERE c.nom_competition LIKE ?";
@@ -78,7 +70,6 @@ public class CompetitionDAO {
         }
         return liste;
     }
-
     public List<Competition> listerTous() {
         List<Competition> liste = new ArrayList<>();
         try (Statement st = Database.getConnection().createStatement();
@@ -89,7 +80,6 @@ public class CompetitionDAO {
         }
         return liste;
     }
-
     public int compter() {
         String sql = "SELECT COUNT(*) FROM competition";
         try (Statement st = Database.getConnection().createStatement();
@@ -100,7 +90,6 @@ public class CompetitionDAO {
         }
         return 0;
     }
-
     private Competition mapper(ResultSet rs) throws SQLException {
         Competition c = new Competition(
                 rs.getInt("id_competition"),
