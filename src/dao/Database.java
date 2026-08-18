@@ -4,29 +4,15 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-/**
- * Classe utilitaire responsable de la connexion JDBC à la base MySQL.
- *
- * ETAPE IMPORTANTE : adapte URL, USER et PASSWORD à ta configuration MySQL locale.
- */
 public class Database {
-
-    // ----- A ADAPTER SELON TON ENVIRONNEMENT -----
     private static final String URL =
             "jdbc:mysql://localhost:3306/joj_dakar2026?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
     private static final String USER = "root";
-    private static final String PASSWORD = "root"; // mets ton propre mot de passe MySQL
-    // -----------------------------------------------
-
+    private static final String PASSWORD = "root";
     private static Connection connection;
 
-    // Empêche l'instanciation
     private Database() {}
 
-    /**
-     * Retourne une connexion unique (singleton) vers la base de données.
-     * Si la connexion est fermée ou inexistante, elle est recréée.
-     */
     public static Connection getConnection() {
         try {
             if (connection == null || connection.isClosed()) {
@@ -44,8 +30,6 @@ public class Database {
         }
         return connection;
     }
-
-    /** Ferme proprement la connexion (à appeler en quittant l'application). */
     public static void closeConnection() {
         try {
             if (connection != null && !connection.isClosed()) {
@@ -56,8 +40,6 @@ public class Database {
             e.printStackTrace();
         }
     }
-
-    /** Petit programme de test de connexion (peut être lancé indépendamment). */
     public static void main(String[] args) {
         Connection c = Database.getConnection();
         if (c != null) {
