@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import model.Discipline;
 public class DisciplineDAO {
-
     public boolean ajouter(Discipline d) {
         String sql = "INSERT INTO discipline (nom_discipline, description) VALUES (?, ?)";
         try (PreparedStatement ps = Database.getConnection().prepareStatement(sql)) {
@@ -19,7 +18,6 @@ public class DisciplineDAO {
             return false;
         }
     }
-
     public boolean modifier(Discipline d) {
         String sql = "UPDATE discipline SET nom_discipline=?, description=? WHERE id_discipline=?";
         try (PreparedStatement ps = Database.getConnection().prepareStatement(sql)) {
@@ -32,7 +30,6 @@ public class DisciplineDAO {
             return false;
         }
     }
-
     public boolean supprimer(int id) {
         String sql = "DELETE FROM discipline WHERE id_discipline=?";
         try (PreparedStatement ps = Database.getConnection().prepareStatement(sql)) {
@@ -43,7 +40,6 @@ public class DisciplineDAO {
             return false;
         }
     }
-
     public Discipline rechercherParId(int id) {
         String sql = "SELECT * FROM discipline WHERE id_discipline=?";
         try (PreparedStatement ps = Database.getConnection().prepareStatement(sql)) {
@@ -56,7 +52,6 @@ public class DisciplineDAO {
         }
         return null;
     }
-
     public List<Discipline> listerTous() {
         List<Discipline> liste = new ArrayList<>();
         String sql = "SELECT * FROM discipline ORDER BY nom_discipline";
@@ -68,7 +63,6 @@ public class DisciplineDAO {
         }
         return liste;
     }
-
     public int compter() {
         String sql = "SELECT COUNT(*) FROM discipline";
         try (Statement st = Database.getConnection().createStatement();
@@ -79,7 +73,6 @@ public class DisciplineDAO {
         }
         return 0;
     }
-
     private Discipline mapper(ResultSet rs) throws SQLException {
         return new Discipline(rs.getInt("id_discipline"), rs.getString("nom_discipline"), rs.getString("description"));
     }
