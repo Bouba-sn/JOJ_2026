@@ -1,17 +1,14 @@
 package dao;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import model.Resultat;
 public class ResultatDAO {
-
     private static final String SELECT_JOIN =
             "SELECT r.*, CONCAT(a.prenom, ' ', a.nom) AS nom_athlete, c.nom_competition " +
                     "FROM resultat r " +
                     "LEFT JOIN athlete a ON r.id_athlete = a.id_athlete " +
                     "LEFT JOIN competition c ON r.id_competition = c.id_competition ";
-
     public boolean ajouter(Resultat r) {
         String sql = "INSERT INTO resultat (id_athlete, id_competition, score, rang) VALUES (?, ?, ?, ?)";
         try (PreparedStatement ps = Database.getConnection().prepareStatement(sql)) {
@@ -25,7 +22,6 @@ public class ResultatDAO {
             return false;
         }
     }
-
     public boolean modifier(Resultat r) {
         String sql = "UPDATE resultat SET id_athlete=?, id_competition=?, score=?, rang=? WHERE id_resultat=?";
         try (PreparedStatement ps = Database.getConnection().prepareStatement(sql)) {
@@ -40,7 +36,6 @@ public class ResultatDAO {
             return false;
         }
     }
-
     public boolean supprimer(int id) {
         String sql = "DELETE FROM resultat WHERE id_resultat=?";
         try (PreparedStatement ps = Database.getConnection().prepareStatement(sql)) {
@@ -51,7 +46,6 @@ public class ResultatDAO {
             return false;
         }
     }
-
     public List<Resultat> listerTous() {
         List<Resultat> liste = new ArrayList<>();
         try (Statement st = Database.getConnection().createStatement();
@@ -62,8 +56,6 @@ public class ResultatDAO {
         }
         return liste;
     }
-
-    /** Classement d'une compétition : trie les résultats par rang croissant. */
     public List<Resultat> classementParCompetition(int idCompetition) {
         List<Resultat> liste = new ArrayList<>();
         String sql = SELECT_JOIN + " WHERE r.id_competition = ? ORDER BY r.rang ASC";
@@ -77,7 +69,6 @@ public class ResultatDAO {
         }
         return liste;
     }
-
     public int compter() {
         String sql = "SELECT COUNT(*) FROM resultat";
         try (Statement st = Database.getConnection().createStatement();
@@ -88,11 +79,6 @@ public class ResultatDAO {
         }
         return 0;
     }
-
-    /**
-     * Tableau des médailles : pour chaque pays, compte le nombre de médailles
-     * Or (rang=1), Argent (rang=2), Bronze (rang=3) obtenues par ses athlètes.
-     */
     public List<Object[]> tableauDesMedailles() {
         List<Object[]> tableau = new ArrayList<>();
         String sql =
@@ -120,7 +106,6 @@ public class ResultatDAO {
         }
         return tableau;
     }
-
     private Resultat mapper(ResultSet rs) throws SQLException {
         Resultat r = new Resultat(
                 rs.getInt("id_resultat"),
